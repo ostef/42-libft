@@ -6,13 +6,13 @@
 /*   By: soumanso <soumanso@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 18:13:04 by soumanso          #+#    #+#             */
-/*   Updated: 2021/11/24 18:31:18 by soumanso         ###   ########lyon.fr   */
+/*   Updated: 2021/11/24 18:35:17 by soumanso         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <unistd.h>
-#include <fnctl.h>
+#include <fcntl.h>
 
 static void	ft_grow_buff(t_buff *buff, t_alloc allocator)
 {
@@ -40,7 +40,7 @@ t_str	ft_read_entire_file(t_cstr filename, t_alloc allocator)
 	t_s64	read_len;
 	t_s64	len;
 
-	ft_memset (&buff, 0, (t_s64)(&len + sizeof (len) - &buff));
+	ft_memset (&buff, 0, (t_s64)((void *)&len + sizeof (len) - (void *)&buff));
 	file = open (filename, O_RDONLY);
 	if (file < 0)
 		return (NULL);
@@ -62,7 +62,7 @@ t_str	ft_read_entire_file(t_cstr filename, t_alloc allocator)
 			break ;
 	}
 	close (file);
-	if (buff)
+	if (buff.data)
 		buff.data[len] = 0;
 	return (buff.data);
 }
