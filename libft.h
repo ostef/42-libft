@@ -6,7 +6,7 @@
 /*   By: soumanso <soumanso@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 12:27:46 by soumanso          #+#    #+#             */
-/*   Updated: 2021/11/23 14:34:59 by soumanso         ###   ########lyon.fr   */
+/*   Updated: 2021/11/24 18:13:44 by soumanso         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,6 +184,10 @@ t_s64		ft_putchar(char c);
 t_s64		ft_putstr(t_cstr s);
 t_s64		ft_putstrn(t_cstr s, t_s64 n);
 t_s64		ft_putnbr(t_s64 n);
+
+/* File */
+
+t_str		ft_read_entire_file(t_cstr filename, t_alloc allocator);
 
 /* String formatting */
 
