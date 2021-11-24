@@ -6,7 +6,7 @@
 /*   By: soumanso <soumanso@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 16:27:54 by soumanso          #+#    #+#             */
-/*   Updated: 2021/11/22 16:27:56 by soumanso         ###   ########lyon.fr   */
+/*   Updated: 2021/11/24 18:39:40 by soumanso         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	*ft_alloc(t_s64 size, t_alloc allocator)
 		ft_assert (
 			g_temp_storage.top + size <= TEMP_STORAGE_SIZE,
 			"Memory shortage in temporay storage (requested size was %i).",
-			size);
+			(t_int)size);
 		result = g_temp_storage.mem + g_temp_storage.top;
 		g_temp_storage.top += size;
 		return (result);

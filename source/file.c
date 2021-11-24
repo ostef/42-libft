@@ -6,7 +6,7 @@
 /*   By: soumanso <soumanso@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 18:13:04 by soumanso          #+#    #+#             */
-/*   Updated: 2021/11/24 18:35:17 by soumanso         ###   ########lyon.fr   */
+/*   Updated: 2021/11/24 18:54:16 by soumanso         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 #include <unistd.h>
 #include <fcntl.h>
 
-static void	ft_grow_buff(t_buff *buff, t_alloc allocator)
+static void	ft_grow_buff(t_buff *buff, t_s64 min, t_alloc allocator)
 {
 	t_str	new_data;
 	t_s64	new_count;
 
-	new_count = buff->count * 2 + 100;
-	new_data = (char *)ft_alloc (new_count, allocator);
+	new_count = ft_max (min, buff->count * 2 + 100);
+	new_data = (t_str)ft_alloc (new_count, allocator);
 	if (!new_data)
 	{
 		ft_free (buff->data, allocator);
@@ -33,6 +33,25 @@ static void	ft_grow_buff(t_buff *buff, t_alloc allocator)
 	buff->count = new_count;
 }
 
+static t_s64	ft_do_one_read(t_file f, t_buff *buff, t_s64 len, t_alloc a)
+{
+	t_s64	read_len;
+
+	ft_grow_buff (buff, len, a);
+	if (!buff->data)
+	{
+		close (f);
+		return (-1);
+	}
+	read_len = read (f, buff->data + len, buff->count - len - 1);
+	if (read_len < 0)
+	{
+		ft_free (buff->data, a);
+		close (f);
+	}
+	return (read_len);
+}
+
 t_str	ft_read_entire_file(t_cstr filename, t_alloc allocator)
 {
 	t_buff	buff;
@@ -40,25 +59,20 @@ t_str	ft_read_entire_file(t_cstr filename, t_alloc allocator)
 	t_s64	read_len;
 	t_s64	len;
 
-	ft_memset (&buff, 0, (t_s64)((void *)&len + sizeof (len) - (void *)&buff));
+	buff.data = NULL;
+	buff.count = 0;
+	len = 0;
 	file = open (filename, O_RDONLY);
 	if (file < 0)
 		return (NULL);
 	read_len = 1;
 	while (read_len)
 	{
-		ft_grow_buff (&buff, allocator);
-		if (!buff.data)
-			break ;
-		read_len = read (file, buff.data, buff.count - 1);
+		read_len = ft_do_one_read (file, &buff, len, allocator);
 		len += read_len;
 		if (read_len < 0)
-		{
-			ft_free (buff.data, allocator);
-			close (file);
 			return (NULL);
-		}
-		else if (read_len < buff.count - 1)
+		else if (read_len < buff.count - len - 1)
 			break ;
 	}
 	close (file);
