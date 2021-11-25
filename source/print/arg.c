@@ -45,5 +45,10 @@ t_s64	ft_next_arg(t_cstr fmt, t_buff *buff, va_list va)
 		if ((arg.flags & FLAG_LJUSTIFY))
 			ft_putchars_buff (buff, ' ', arg.width - len, FALSE);
 	}
+	else
+	{
+		ft_putchar_buff (buff, '%', FALSE);
+		ft_putstrn_buff (buff, fmt, i, FALSE);
+	}
 	return (i);
 }

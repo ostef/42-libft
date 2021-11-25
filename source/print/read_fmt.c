@@ -35,25 +35,7 @@ static t_fmt_flags	g_flag_values[] = {
 	FLAG_ESCAPED
 };
 
-t_s64	ft_read_arg(t_cstr fmt, t_fmt_arg *arg, va_list va)
-{
-	t_s64	i;
-
-	i = 0;
-	arg->flags = FLAG_NONE;
-	while (fmt[i] && ft_read_flag (fmt[i], arg))
-		i += 1;
-	i += ft_read_width (fmt + i, arg);
-	if (arg->width == WIDTH_ARG)
-		arg->width = va_arg (va, t_int);
-	i += ft_read_precision (fmt + i, arg);
-	if (arg->precision == PREC_ARG)
-		arg->precision = va_arg (va, t_int);
-	i += ft_read_specifier (fmt[i], arg);
-	return (i);
-}
-
-t_s64	ft_read_flag(char c, t_fmt_arg *arg)
+static t_s64	ft_read_flag(char c, t_fmt_arg *arg)
 {
 	t_s64	i;
 
@@ -70,7 +52,7 @@ t_s64	ft_read_flag(char c, t_fmt_arg *arg)
 	return (0);
 }
 
-t_s64	ft_read_width(const char *fmt, t_fmt_arg *arg)
+static t_s64	ft_read_width(const char *fmt, t_fmt_arg *arg)
 {
 	t_s64	i;
 
@@ -86,7 +68,7 @@ t_s64	ft_read_width(const char *fmt, t_fmt_arg *arg)
 	return (i);
 }
 
-t_s64	ft_read_precision(const char *fmt, t_fmt_arg *arg)
+static t_s64	ft_read_precision(const char *fmt, t_fmt_arg *arg)
 {
 	t_s64	i;
 
@@ -108,7 +90,7 @@ t_s64	ft_read_precision(const char *fmt, t_fmt_arg *arg)
 	return (i);
 }
 
-t_s64	ft_read_specifier(char c, t_fmt_arg *arg)
+static t_s64	ft_read_specifier(char c, t_fmt_arg *arg)
 {
 	t_s64	i;
 
@@ -126,4 +108,22 @@ t_s64	ft_read_specifier(char c, t_fmt_arg *arg)
 		i += 1;
 	}
 	return (0);
+}
+
+t_s64	ft_read_arg(t_cstr fmt, t_fmt_arg *arg, va_list va)
+{
+	t_s64	i;
+
+	i = 0;
+	arg->flags = FLAG_NONE;
+	while (fmt[i] && ft_read_flag (fmt[i], arg))
+		i += 1;
+	i += ft_read_width (fmt + i, arg);
+	if (arg->width == WIDTH_ARG)
+		arg->width = va_arg (va, t_int);
+	i += ft_read_precision (fmt + i, arg);
+	if (arg->precision == PREC_ARG)
+		arg->precision = va_arg (va, t_int);
+	i += ft_read_specifier (fmt[i], arg);
+	return (i);
 }

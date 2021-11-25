@@ -241,10 +241,6 @@ t_s64		ft_putuint_buff(t_buff *buff, t_u64 n, t_int min, t_cstr base);
 
 t_s64		ft_next_arg(t_cstr fmt, t_buff *buff, va_list va);
 t_s64		ft_read_arg(t_cstr fmt, t_fmt_arg *arg, va_list va);
-t_s64		ft_read_flag(char c, t_fmt_arg *arg);
-t_s64		ft_read_width(t_cstr fmt, t_fmt_arg *arg);
-t_s64		ft_read_precision(t_cstr fmt, t_fmt_arg *arg);
-t_s64		ft_read_specifier(char c, t_fmt_arg *arg);
 
 t_s64		ft_sprint_c(t_buff *buff, t_fmt_arg arg, va_list va);
 t_s64		ft_sprint_s(t_buff *buff, t_fmt_arg arg, va_list va);
