@@ -40,4 +40,9 @@ fclean: clean
 
 re: fclean all
 
+tests/%: tests/%.c $(NAME)
+	$(CC) $(C_FLAGS) $< $(NAME) -o $@
+	./$@
+	@rm -f $@
+
 .PHONY: all norme clean fclean re
