@@ -6,7 +6,7 @@
 /*   By: soumanso <soumanso@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 00:36:42 by soumanso          #+#    #+#             */
-/*   Updated: 2021/11/23 14:21:01 by soumanso         ###   ########lyon.fr   */
+/*   Updated: 2021/11/25 19:45:21 by soumanso         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -334,4 +334,21 @@ int	main(void)
 	t_int	n;
 	ft_println ("Hello Sailor%n!", &n);
 	ft_println ("Should be 12: %i.", n);
+	t_f32	nan = ft_nan32 ();
+	t_f32	inf = ft_inf32 ();
+	t_f32	ninf = -ft_inf32 ();
+	t_f32	pi = 3.14f;
+	t_f32	neg = -123.456;
+	ft_println ("0x%.8x : %a", *(t_u32 *)&nan, nan);
+	ft_println ("0x%.8x : %a", *(t_u32 *)&inf, inf);
+	ft_println ("0x%.8x : %+a", *(t_u32 *)&inf, inf);
+	ft_println ("0x%.8x : % a", *(t_u32 *)&inf, inf);
+	ft_println ("0x%.8x : %a", *(t_u32 *)&ninf, ninf);
+	ft_println ("0x%.8x : %a", *(t_u32 *)&neg, neg);
+	ft_println ("0x%.8x : %a", *(t_u32 *)&pi, pi);
+	ft_println ("0x%.8x : %+a", *(t_u32 *)&pi, pi);
+	ft_println ("0x%.8x : % a", *(t_u32 *)&pi, pi);
+	ft_println ("0x%.8x : %.3a", *(t_u32 *)&pi, pi);
+	ft_println ("0x%.8x : %.5a", *(t_u32 *)&pi, pi);
+	printf ("%x : %.3a : %f\n", *(t_u32 *)&pi, pi, pi);
 }

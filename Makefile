@@ -15,7 +15,8 @@ SRC_FILES = source/alloc.c source/debug.c source/file.c\
 	source/print/specifiers/sprint_b.c\
 	source/print/specifiers/sprint_x.c\
 	source/print/specifiers/sprint_p.c\
-	source/print/specifiers/sprint_n.c
+	source/print/specifiers/sprint_n.c\
+	source/print/specifiers/sprint_a.c
 OBJ_FILES = $(SRC_FILES:.c=.o)
 CC = gcc
 C_FLAGS = -Wall -Wextra -Werror -I.

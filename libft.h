@@ -6,7 +6,7 @@
 /*   By: soumanso <soumanso@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 12:27:46 by soumanso          #+#    #+#             */
-/*   Updated: 2021/11/24 18:13:44 by soumanso         ###   ########lyon.fr   */
+/*   Updated: 2021/11/25 19:44:59 by soumanso         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,10 +117,17 @@ t_f32		ft_clampf(t_f32 x, t_f32 min, t_f32 max);
 t_f32		ft_floor(t_f32 x);
 t_f32		ft_round(t_f32 x);
 t_f32		ft_ceil(t_f32 x);
+
+/* IEEE 754 */
+
+# define F32_EXP_BIAS 127
+# define F64_EXP_BIAS 1023
+
+void		ft_decompose_f32(t_f32 x, t_u32 *s, t_u32 *e, t_u32 *m);
 t_bool		ft_is_nan(t_f32 x);
 t_bool		ft_is_inf(t_f32 x);
-t_bool		ft_is_pos_inf(t_f32 x);
-t_bool		ft_is_neg_inf(t_f32 x);
+t_f32		ft_nan32(void);
+t_f32		ft_inf32(void);
 
 /* Char */
 
@@ -237,6 +244,7 @@ t_s64		ft_putchars_buff(t_buff *buff, char c, t_s64 len, t_bool escape);
 t_s64		ft_putchar_buff(t_buff *buff, char c, t_bool escape);
 t_s64		ft_putstr_buff(t_buff *buff, t_cstr s, t_bool escape);
 t_s64		ft_putstrn_buff(t_buff *buff, t_cstr s, t_s64 len, t_bool escape);
+t_s64		ft_putint_buff(t_buff *buff, t_u64 n, t_int min, t_cstr base);
 t_s64		ft_putuint_buff(t_buff *buff, t_u64 n, t_int min, t_cstr base);
 
 t_s64		ft_next_arg(t_cstr fmt, t_buff *buff, va_list va);
@@ -250,6 +258,7 @@ t_s64		ft_sprint_u(t_buff *buff, t_fmt_arg arg, va_list va);
 t_s64		ft_sprint_x(t_buff *buff, t_fmt_arg arg, va_list va);
 t_s64		ft_sprint_b(t_buff *buff, t_fmt_arg arg, va_list va);
 t_s64		ft_sprint_n(t_buff *buff, t_fmt_arg arg, va_list va);
+t_s64		ft_sprint_a(t_buff *buff, t_fmt_arg arg, va_list va);
 
 t_s64		ft_vsprint(t_str buff, t_cstr fmt, va_list va);
 t_s64		ft_sprint(t_str buff, t_cstr fmt, ...);
