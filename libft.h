@@ -6,7 +6,7 @@
 /*   By: soumanso <soumanso@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 12:27:46 by soumanso          #+#    #+#             */
-/*   Updated: 2021/11/28 19:26:10 by soumanso         ###   ########lyon.fr   */
+/*   Updated: 2021/12/09 18:08:16 by soumanso         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ const void	*ft_memrchr(const void *p, t_u8 c, t_s64 n);
 # define S64_MIN 0x8000000000000000
 # define S64_MAX 0x7fffffffffffffff
 # define U64_MAX 0xffffffffffffffff
+# define PI 3.1415927f
 
 t_s64		ft_abs(t_s64 x);
 t_f32		ft_absf(t_f32 x);
