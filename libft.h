@@ -6,7 +6,7 @@
 /*   By: soumanso <soumanso@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 12:27:46 by soumanso          #+#    #+#             */
-/*   Updated: 2021/12/09 18:08:16 by soumanso         ###   ########lyon.fr   */
+/*   Updated: 2021/12/09 19:33:49 by soumanso         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,7 @@ t_f32		ft_clampf(t_f32 x, t_f32 min, t_f32 max);
 t_f32		ft_floor(t_f32 x);
 t_f32		ft_round(t_f32 x);
 t_f32		ft_ceil(t_f32 x);
+t_f32		ft_lerp(t_f32 a, t_f32 b, t_f32 t);
 
 /* IEEE 754 */
 

@@ -1,6 +1,6 @@
 NAME = libft.a
 SRC_FILES = source/alloc.c source/debug.c source/file.c\
-	source/sign.c source/min_max.c source/clamp.c source/ieee754.c source/round.c\
+	source/sign.c source/min_max.c source/clamp.c source/ieee754.c source/round.c source/lerp.c\
 	source/memchr.c source/memcmp.c source/memcpy.c source/memset.c\
 	source/letter.c source/char.c\
 	source/strchr.c source/strcmp.c source/strcpy.c source/strdup.c source/strstr.c\
