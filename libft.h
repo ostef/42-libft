@@ -70,13 +70,14 @@ typedef struct s_temp_storage
 
 typedef enum e_alloc
 {
-	ALLOC_TEMP = 0,
-	ALLOC_HEAP = 1
+	ALLOC_HEAP = 0,
+	ALLOC_TEMP = 1
 }	t_alloc;
 
 void		ft_reset_temp_storage(void);
 void		*ft_alloc(t_s64 size, t_alloc allocator);
 void		*ft_zalloc(t_s64 size, t_alloc allocator);
+void		*ft_realloc(void *ptr, t_s64 old_size, t_s64 size, t_alloc alloc);
 void		ft_free(void *ptr, t_alloc allocator);
 
 /* Memory */

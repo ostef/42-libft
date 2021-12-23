@@ -6,7 +6,7 @@
 /*   By: soumanso <soumanso@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 16:27:54 by soumanso          #+#    #+#             */
-/*   Updated: 2021/11/24 18:39:40 by soumanso         ###   ########lyon.fr   */
+/*   Updated: 2021/12/16 05:00:33 by soumanso         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,21 @@ void	*ft_zalloc(t_s64 size, t_alloc allocator)
 	if (result)
 		ft_memset (result, 0, size);
 	return (result);
+}
+
+void	*ft_realloc(void *ptr, t_s64 old_size, t_s64 size, t_alloc alloc)
+{
+	void	*new_ptr;
+
+	new_ptr = ft_alloc (size, alloc);
+	if (!new_ptr)
+	{
+		ft_free (ptr, alloc);
+		return (NULL);
+	}
+	ft_memcpy (new_ptr, ptr, ft_min (size, old_size));
+	ft_free (ptr, alloc);
+	return (new_ptr);
 }
 
 void	ft_free(void *ptr, t_alloc allocator)

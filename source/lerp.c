@@ -16,4 +16,3 @@ t_f32	ft_lerp(t_f32 a, t_f32 b, t_f32 t)
 {
 	return (a * (1 - t) + b * t);
 }
-
