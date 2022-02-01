@@ -6,7 +6,7 @@
 /*   By: soumanso <soumanso@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 00:07:40 by soumanso          #+#    #+#             */
-/*   Updated: 2021/11/23 14:06:54 by soumanso         ###   ########lyon.fr   */
+/*   Updated: 2022/02/01 17:55:52 by soumanso         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ t_s64	ft_vfprint(t_file f, t_cstr fmt, va_list va)
 	va_copy (va2, va);
 	len = ft_vsprint (NULL, fmt, va2);
 	va_end (va2);
-	buff = (t_str)malloc (len + 1);
+	buff = (t_str)ft_alloc (len + 1, ALLOC_HEAP);
 	if (!buff)
 		return (-1);
 	ft_vsprint (buff, fmt, va);
 	write (f, buff, len);
-	free (buff);
+	ft_free (buff, ALLOC_HEAP);
 	return (len);
 }
 
@@ -51,12 +51,12 @@ t_s64	ft_vfprintln(t_file f, t_cstr fmt, va_list va)
 	va_copy (va2, va);
 	len = ft_vsprintln (NULL, fmt, va2);
 	va_end (va2);
-	buff = (t_str)malloc (len + 1);
+	buff = (t_str)ft_alloc (len + 1, ALLOC_HEAP);
 	if (!buff)
 		return (-1);
 	ft_vsprintln (buff, fmt, va);
 	write (f, buff, len);
-	free (buff);
+	ft_free (buff, ALLOC_HEAP);
 	return (len);
 }
 

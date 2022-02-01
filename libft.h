@@ -6,7 +6,7 @@
 /*   By: soumanso <soumanso@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 12:27:46 by soumanso          #+#    #+#             */
-/*   Updated: 2021/12/09 19:33:49 by soumanso         ###   ########lyon.fr   */
+/*   Updated: 2022/02/01 18:00:33 by soumanso         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,9 @@ typedef enum e_alloc
 	ALLOC_TEMP = 1
 }	t_alloc;
 
+t_int		ft_get_heap_allocations(void);
 void		ft_reset_temp_storage(void);
 void		*ft_alloc(t_s64 size, t_alloc allocator);
-void		*ft_zalloc(t_s64 size, t_alloc allocator);
 void		*ft_realloc(void *ptr, t_s64 old_size, t_s64 size, t_alloc alloc);
 void		ft_free(void *ptr, t_alloc allocator);
 
@@ -89,6 +89,16 @@ t_int		ft_memcmp(const void *p1, const void *p2, t_s64 n);
 t_bool		ft_memequ(const void *p1, const void *p2, t_s64 n);
 const void	*ft_memchr(const void *p, t_u8 c, t_s64 n);
 const void	*ft_memrchr(const void *p, t_u8 c, t_s64 n);
+
+static inline void	*ft_zalloc(t_s64 size, t_alloc allocator)
+{
+	void	*result;
+
+	result = ft_alloc (size, allocator);
+	if (result)
+		ft_memset (result, 0, size);
+	return (result);
+}
 
 /* Math */
 

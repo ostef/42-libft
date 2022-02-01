@@ -6,14 +6,20 @@
 /*   By: soumanso <soumanso@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 16:27:54 by soumanso          #+#    #+#             */
-/*   Updated: 2021/12/16 05:00:33 by soumanso         ###   ########lyon.fr   */
+/*   Updated: 2022/02/01 18:00:16 by soumanso         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
+static t_int			g_heap_allocations;
 static t_temp_storage	g_temp_storage;
+
+t_int	ft_get_heap_allocations(void)
+{
+	return (g_heap_allocations);
+}
 
 void	ft_reset_temp_storage(void)
 {
@@ -39,19 +45,12 @@ void	*ft_alloc(t_s64 size, t_alloc allocator)
 	}
 	else if (allocator == ALLOC_HEAP)
 	{
-		return (malloc (size));
+		result = malloc (size);
+		if (result)
+			g_heap_allocations += 1;
+		return (result);
 	}
 	return (NULL);
-}
-
-void	*ft_zalloc(t_s64 size, t_alloc allocator)
-{
-	void	*result;
-
-	result = ft_alloc (size, allocator);
-	if (result)
-		ft_memset (result, 0, size);
-	return (result);
 }
 
 void	*ft_realloc(void *ptr, t_s64 old_size, t_s64 size, t_alloc alloc)
@@ -72,5 +71,9 @@ void	*ft_realloc(void *ptr, t_s64 old_size, t_s64 size, t_alloc alloc)
 void	ft_free(void *ptr, t_alloc allocator)
 {
 	if (allocator == ALLOC_HEAP)
+	{
+		if (ptr)
+			g_heap_allocations -= 1;
 		free (ptr);
+	}
 }
