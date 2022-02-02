@@ -6,7 +6,7 @@
 /*   By: soumanso <soumanso@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 12:27:46 by soumanso          #+#    #+#             */
-/*   Updated: 2022/02/01 18:00:33 by soumanso         ###   ########lyon.fr   */
+/*   Updated: 2022/02/02 14:04:31 by soumanso         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -284,5 +284,6 @@ t_s64		ft_vprint(t_cstr fmt, va_list va);
 t_s64		ft_print(t_cstr fmt, ...);
 t_s64		ft_vprintln(t_cstr fmt, va_list va);
 t_s64		ft_println(t_cstr fmt, ...);
+t_str		ft_fmt(t_alloc alloc, t_str fmt, ...);
 
 #endif
