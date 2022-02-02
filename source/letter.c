@@ -6,7 +6,7 @@
 /*   By: soumanso <soumanso@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:20:38 by soumanso          #+#    #+#             */
-/*   Updated: 2021/11/22 17:21:59 by soumanso         ###   ########lyon.fr   */
+/*   Updated: 2022/02/02 14:43:09 by soumanso         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	ft_to_lower(char c)
 char	ft_to_upper(char c)
 {
 	if (ft_is_lower (c))
-		return ('a' + c - 'A');
+		return ('A' + c - 'a');
 	return (c);
 }
 
