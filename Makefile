@@ -23,7 +23,7 @@ C_FLAGS = -Wall -Wextra -Werror -I.
 
 all: $(NAME)
 
-%.o: %.c libft.h
+%.o: %.c libft.h Makefile
 	$(CC) $(C_FLAGS) -c $< -o $@
 
 $(NAME): $(OBJ_FILES)
