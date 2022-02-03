@@ -6,7 +6,7 @@
 /*   By: soumanso <soumanso@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 12:27:46 by soumanso          #+#    #+#             */
-/*   Updated: 2022/02/02 14:04:31 by soumanso         ###   ########lyon.fr   */
+/*   Updated: 2022/02/03 12:13:16 by soumanso         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -285,5 +285,12 @@ t_s64		ft_print(t_cstr fmt, ...);
 t_s64		ft_vprintln(t_cstr fmt, va_list va);
 t_s64		ft_println(t_cstr fmt, ...);
 t_str		ft_fmt(t_alloc alloc, t_str fmt, ...);
+
+/* Random */
+
+void		ft_rand_seed(t_int seed);
+t_int		ft_rand(void);
+t_f32		ft_rand_rangef(t_f32 low, t_f32 high);
+t_int		ft_rand_rangei(t_int low, t_int high);
 
 #endif
