@@ -6,13 +6,13 @@
 /*   By: soumanso <soumanso@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 22:04:22 by soumanso          #+#    #+#             */
-/*   Updated: 2021/11/25 17:27:14 by soumanso         ###   ########lyon.fr   */
+/*   Updated: 2022/02/12 16:01:59 by soumanso         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static const char	g_fmt_specifiers[] = "cspdiuxXbna";
+static const char	g_fmt_specifiers[] = "cspdiuxXbnam";
 static t_fmt_func	g_fmt_funcs[] = {
 	&ft_sprint_c,
 	&ft_sprint_s,
@@ -24,7 +24,8 @@ static t_fmt_func	g_fmt_funcs[] = {
 	&ft_sprint_x,
 	&ft_sprint_b,
 	&ft_sprint_n,
-	&ft_sprint_a
+	&ft_sprint_a,
+	&ft_sprint_m
 };
 static const char	g_flag_str[] = "-+ #0\\";
 static t_fmt_flags	g_flag_values[] = {

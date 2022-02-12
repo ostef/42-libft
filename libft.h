@@ -6,7 +6,7 @@
 /*   By: soumanso <soumanso@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 12:27:46 by soumanso          #+#    #+#             */
-/*   Updated: 2022/02/03 12:13:16 by soumanso         ###   ########lyon.fr   */
+/*   Updated: 2022/02/12 16:05:35 by soumanso         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <stdarg.h>
 # include <stdlib.h>
+# include <string.h>
+# include <errno.h>
 
 typedef char			t_s8;
 typedef unsigned char	t_u8;
@@ -271,6 +273,7 @@ t_s64		ft_sprint_x(t_buff *buff, t_fmt_arg arg, va_list va);
 t_s64		ft_sprint_b(t_buff *buff, t_fmt_arg arg, va_list va);
 t_s64		ft_sprint_n(t_buff *buff, t_fmt_arg arg, va_list va);
 t_s64		ft_sprint_a(t_buff *buff, t_fmt_arg arg, va_list va);
+t_s64		ft_sprint_m(t_buff *buff, t_fmt_arg arg, va_list va);
 
 t_s64		ft_vsprint(t_str buff, t_cstr fmt, va_list va);
 t_s64		ft_sprint(t_str buff, t_cstr fmt, ...);
