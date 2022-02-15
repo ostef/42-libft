@@ -6,7 +6,7 @@
 /*   By: soumanso <soumanso@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 12:27:46 by soumanso          #+#    #+#             */
-/*   Updated: 2022/02/12 16:05:35 by soumanso         ###   ########lyon.fr   */
+/*   Updated: 2022/02/15 18:02:16 by soumanso         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,23 +64,42 @@ void		ft_panic(t_cstr fmt, ...);
 #  define TEMP_STORAGE_SIZE (1048576)	/* 1 MB */
 # endif
 
-typedef struct s_temp_storage
+typedef struct s_arena
 {
+	t_u8	*mem;
+	t_s64	size;
 	t_s64	top;
-	t_u8	mem[TEMP_STORAGE_SIZE];
-}	t_temp_storage;
+}	t_arena;
 
-typedef enum e_alloc
+typedef enum e_alloc_mode
 {
-	ALLOC_HEAP = 0,
-	ALLOC_TEMP = 1
+	MODE_ALLOCATE = 0,
+	MODE_FREE = 1
+}	t_alloc_mode;
+
+typedef void	*(t_alloc_proc)(t_alloc_mode, t_s64, void *, void *);
+
+typedef struct s_alloc
+{
+	t_alloc_proc	proc;
+	void			*data;
 }	t_alloc;
 
-t_int		ft_get_heap_allocations(void);
-void		ft_reset_temp_storage(void);
-void		*ft_alloc(t_s64 size, t_alloc allocator);
+void		*ft_alloc(t_s64 size, t_alloc alloc);
+void		ft_free(void *ptr, t_alloc alloc);
 void		*ft_realloc(void *ptr, t_s64 old_size, t_s64 size, t_alloc alloc);
-void		ft_free(void *ptr, t_alloc allocator);
+
+t_int		ft_get_heap_allocations(void);
+void		*ft_heap_alloc(t_alloc_mode mode, t_s64 size, void *ptr, void *data);
+
+t_bool		ft_init_arena(t_arena *arena, t_s64 size);
+void		ft_free_arena(t_arena *arena);
+void		*ft_arena_alloc(t_alloc_mode mode, t_s64 size, void *ptr, void *data);
+
+void		ft_init_temp_storage(void);
+void		ft_reset_temp_storage(void);
+t_s64		ft_get_temp_storage_state(void);
+void		ft_set_temp_storage_state(t_s64 state);
 
 /* Memory */
 
