@@ -6,7 +6,7 @@
 /*   By: soumanso <soumanso@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 12:27:46 by soumanso          #+#    #+#             */
-/*   Updated: 2022/02/15 18:02:16 by soumanso         ###   ########lyon.fr   */
+/*   Updated: 2022/02/16 16:19:04 by soumanso         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,13 +71,13 @@ typedef struct s_arena
 	t_s64	top;
 }	t_arena;
 
-typedef enum e_alloc_mode
+typedef enum e_alloc_op
 {
-	MODE_ALLOCATE = 0,
-	MODE_FREE = 1
-}	t_alloc_mode;
+	OP_ALLOCATE = 0,
+	OP_FREE = 1
+}	t_alloc_op;
 
-typedef void	*(t_alloc_proc)(t_alloc_mode, t_s64, void *, void *);
+typedef void	*(*t_alloc_proc)(t_alloc_op, t_s64, void *, void *);
 
 typedef struct s_alloc
 {
@@ -86,40 +86,24 @@ typedef struct s_alloc
 }	t_alloc;
 
 void		*ft_alloc(t_s64 size, t_alloc alloc);
+void		*ft_zalloc(t_s64 size, t_alloc alloc);
 void		ft_free(void *ptr, t_alloc alloc);
 void		*ft_realloc(void *ptr, t_s64 old_size, t_s64 size, t_alloc alloc);
 
+t_alloc		ft_heap(void);
 t_int		ft_get_heap_allocations(void);
-void		*ft_heap_alloc(t_alloc_mode mode, t_s64 size, void *ptr, void *data);
+void		*ft_heap_alloc(t_alloc_op op, t_s64 size, void *ptr, void *data);
 
+t_alloc		ft_arena(t_arena *arena);
 t_bool		ft_init_arena(t_arena *arena, t_s64 size);
 void		ft_free_arena(t_arena *arena);
-void		*ft_arena_alloc(t_alloc_mode mode, t_s64 size, void *ptr, void *data);
+void		*ft_arena_alloc(t_alloc_op op, t_s64 size, void *ptr, void *data);
 
+t_alloc		ft_temp(void);
 void		ft_init_temp_storage(void);
 void		ft_reset_temp_storage(void);
 t_s64		ft_get_temp_storage_state(void);
 void		ft_set_temp_storage_state(t_s64 state);
-
-/* Memory */
-
-void		*ft_memcpy(void *dst, const void *src, t_s64 n);
-void		*ft_memmove(void *dst, const void *src, t_s64 n);
-void		*ft_memset(void *dst, t_u8 c, t_s64 n);
-t_int		ft_memcmp(const void *p1, const void *p2, t_s64 n);
-t_bool		ft_memequ(const void *p1, const void *p2, t_s64 n);
-const void	*ft_memchr(const void *p, t_u8 c, t_s64 n);
-const void	*ft_memrchr(const void *p, t_u8 c, t_s64 n);
-
-static inline void	*ft_zalloc(t_s64 size, t_alloc allocator)
-{
-	void	*result;
-
-	result = ft_alloc (size, allocator);
-	if (result)
-		ft_memset (result, 0, size);
-	return (result);
-}
 
 /* Math */
 
@@ -183,6 +167,14 @@ t_bool		ft_is_space(char c);
 
 /* String */
 
+void		*ft_memcpy(void *dst, const void *src, t_s64 n);
+void		*ft_memmove(void *dst, const void *src, t_s64 n);
+void		*ft_memset(void *dst, t_u8 c, t_s64 n);
+t_int		ft_memcmp(const void *p1, const void *p2, t_s64 n);
+t_bool		ft_memequ(const void *p1, const void *p2, t_s64 n);
+const void	*ft_memchr(const void *p, t_u8 c, t_s64 n);
+const void	*ft_memrchr(const void *p, t_u8 c, t_s64 n);
+
 t_s64		ft_strlen(t_cstr s);
 t_int		ft_strcmp(t_cstr s1, t_cstr s2);
 t_int		ft_strncmp(t_cstr s1, t_cstr s2, t_s64 n);
@@ -190,8 +182,8 @@ t_bool		ft_strequ(t_cstr s1, t_cstr s2);
 t_bool		ft_strnequ(t_cstr s1, t_cstr s2, t_s64 n);
 t_str		ft_strcpy(t_str dst, t_cstr src);
 t_str		ft_strncpy(t_str dst, t_cstr src, t_s64 n);
-t_str		ft_strdup(t_cstr s, t_alloc allocator);
-t_str		ft_strndup(t_cstr s, t_s64 n, t_alloc allocator);
+t_str		ft_strdup(t_cstr s, t_alloc alloc);
+t_str		ft_strndup(t_cstr s, t_s64 n, t_alloc alloc);
 t_cstr		ft_strchr(t_cstr s, char c);
 t_cstr		ft_strnchr(t_cstr s, char c, t_s64 n);
 t_cstr		ft_strrchr(t_cstr s, char c);
@@ -228,7 +220,7 @@ t_s64		ft_putnbr(t_s64 n);
 
 /* File */
 
-t_str		ft_read_entire_file(t_cstr filename, t_alloc allocator);
+t_str		ft_read_entire_file(t_cstr filename, t_alloc alloc);
 
 /* String formatting */
 

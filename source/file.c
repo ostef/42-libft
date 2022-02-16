@@ -6,7 +6,7 @@
 /*   By: soumanso <soumanso@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 18:13:04 by soumanso          #+#    #+#             */
-/*   Updated: 2021/11/24 18:54:16 by soumanso         ###   ########lyon.fr   */
+/*   Updated: 2022/02/16 16:11:25 by soumanso         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,21 @@
 #include <unistd.h>
 #include <fcntl.h>
 
-static void	ft_grow_buff(t_buff *buff, t_s64 min, t_alloc allocator)
+static void	ft_grow_buff(t_buff *buff, t_s64 min, t_alloc alloc)
 {
 	t_str	new_data;
 	t_s64	new_count;
 
 	new_count = ft_max (min, buff->count * 2 + 100);
-	new_data = (t_str)ft_alloc (new_count, allocator);
+	new_data = (t_str)ft_alloc (new_count, alloc);
 	if (!new_data)
 	{
-		ft_free (buff->data, allocator);
+		ft_free (buff->data, alloc);
 		buff->data = NULL;
 		buff->count = 0;
 	}
 	ft_memcpy (new_data, buff->data, buff->count);
-	ft_free (buff->data, allocator);
+	ft_free (buff->data, alloc);
 	buff->data = new_data;
 	buff->count = new_count;
 }
@@ -52,7 +52,7 @@ static t_s64	ft_do_one_read(t_file f, t_buff *buff, t_s64 len, t_alloc a)
 	return (read_len);
 }
 
-t_str	ft_read_entire_file(t_cstr filename, t_alloc allocator)
+t_str	ft_read_entire_file(t_cstr filename, t_alloc alloc)
 {
 	t_buff	buff;
 	t_file	file;
@@ -68,7 +68,7 @@ t_str	ft_read_entire_file(t_cstr filename, t_alloc allocator)
 	read_len = 1;
 	while (read_len)
 	{
-		read_len = ft_do_one_read (file, &buff, len, allocator);
+		read_len = ft_do_one_read (file, &buff, len, alloc);
 		len += read_len;
 		if (read_len < 0)
 			return (NULL);

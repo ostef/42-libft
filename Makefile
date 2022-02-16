@@ -1,11 +1,12 @@
 NAME = libft.a
-SRC_FILES = source/alloc.c source/debug.c source/file.c\
+SRC_FILES = source/debug.c source/file.c\
 	source/sign.c source/min_max.c source/clamp.c source/ieee754.c source/round.c source/lerp.c\
 	source/memchr.c source/memcmp.c source/memcpy.c source/memset.c\
 	source/letter.c source/char.c\
 	source/strchr.c source/strcmp.c source/strcpy.c source/strdup.c source/strstr.c\
 	source/str_to_number.c\
 	source/putchar.c source/putstr.c source/putnbr.c\
+	source/memory/alloc.c source/memory/heap.c source/memory/arena.c source/memory/temp.c\
 	source/print/print.c source/print/sprint.c source/print/fprint.c\
 	source/print/buff.c source/print/arg.c source/print/read_fmt.c\
 	source/print/specifiers/sprint_c.c\
