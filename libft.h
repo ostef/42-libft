@@ -6,7 +6,7 @@
 /*   By: soumanso <soumanso@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 12:27:46 by soumanso          #+#    #+#             */
-/*   Updated: 2022/02/16 16:19:04 by soumanso         ###   ########lyon.fr   */
+/*   Updated: 2022/02/16 16:57:21 by soumanso         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ typedef enum e_alloc_op
 	OP_FREE = 1
 }	t_alloc_op;
 
-typedef void	*(*t_alloc_proc)(t_alloc_op, t_s64, void *, void *);
+typedef void			*(*t_alloc_proc)(t_alloc_op, t_s64, void *, void *);
 
 typedef struct s_alloc
 {
@@ -135,6 +135,13 @@ t_f32		ft_floor(t_f32 x);
 t_f32		ft_round(t_f32 x);
 t_f32		ft_ceil(t_f32 x);
 t_f32		ft_lerp(t_f32 a, t_f32 b, t_f32 t);
+
+/* Random */
+
+void		ft_rand_seed(t_int seed);
+t_int		ft_rand(void);
+t_f32		ft_rand_rangef(t_f32 low, t_f32 high);
+t_int		ft_rand_rangei(t_int low, t_int high);
 
 /* IEEE 754 */
 
@@ -299,12 +306,5 @@ t_s64		ft_print(t_cstr fmt, ...);
 t_s64		ft_vprintln(t_cstr fmt, va_list va);
 t_s64		ft_println(t_cstr fmt, ...);
 t_str		ft_fmt(t_alloc alloc, t_str fmt, ...);
-
-/* Random */
-
-void		ft_rand_seed(t_int seed);
-t_int		ft_rand(void);
-t_f32		ft_rand_rangef(t_f32 low, t_f32 high);
-t_int		ft_rand_rangei(t_int low, t_int high);
 
 #endif

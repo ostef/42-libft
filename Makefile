@@ -1,42 +1,42 @@
 NAME = libft.a
-SRC_FILES = source/debug.c source/file.c\
-	source/sign.c source/min_max.c source/clamp.c source/ieee754.c source/round.c source/lerp.c\
-	source/memchr.c source/memcmp.c source/memcpy.c source/memset.c\
-	source/letter.c source/char.c\
-	source/strchr.c source/strcmp.c source/strcpy.c source/strdup.c source/strstr.c\
-	source/str_to_number.c\
-	source/putchar.c source/putstr.c source/putnbr.c\
-	source/memory/alloc.c source/memory/heap.c source/memory/arena.c source/memory/temp.c\
-	source/print/print.c source/print/sprint.c source/print/fprint.c\
-	source/print/buff.c source/print/arg.c source/print/read_fmt.c\
-	source/print/specifiers/sprint_c.c\
-	source/print/specifiers/sprint_s.c\
-	source/print/specifiers/sprint_i.c\
-	source/print/specifiers/sprint_u.c\
-	source/print/specifiers/sprint_b.c\
-	source/print/specifiers/sprint_x.c\
-	source/print/specifiers/sprint_p.c\
-	source/print/specifiers/sprint_n.c\
-	source/print/specifiers/sprint_a.c\
-	source/print/specifiers/sprint_m.c
+SRC_DIR = source
+SRC_FILES = debug.c file.c\
+	letter.c char.c\
+	str_to_number.c\
+	putchar.c putstr.c putnbr.c\
+	math/random.c math/sign.c math/min_max.c math/clamp.c\
+	math/ieee754.c math/round.c math/lerp.c\
+	string/memchr.c string/memcmp.c string/memcpy.c string/memset.c\
+	string/strchr.c string/strcmp.c string/strcpy.c string/strdup.c string/strstr.c\
+	memory/alloc.c memory/heap.c memory/arena.c memory/temp.c\
+	fmt/print.c fmt/sprint.c fmt/fprint.c\
+	fmt/buff.c fmt/arg.c fmt/read_fmt.c\
+	fmt/specifiers/sprint_c.c\
+	fmt/specifiers/sprint_s.c\
+	fmt/specifiers/sprint_i.c\
+	fmt/specifiers/sprint_u.c\
+	fmt/specifiers/sprint_b.c\
+	fmt/specifiers/sprint_x.c\
+	fmt/specifiers/sprint_p.c\
+	fmt/specifiers/sprint_n.c\
+	fmt/specifiers/sprint_a.c\
+	fmt/specifiers/sprint_m.c
+OBJ_DIR = obj
 OBJ_FILES = $(SRC_FILES:.c=.o)
 CC = gcc
 C_FLAGS = -Wall -Wextra -Werror -I.
 
 all: $(NAME)
 
-%.o: %.c libft.h Makefile
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c libft.h Makefile
+	@mkdir -p $(dir $@)
 	$(CC) $(C_FLAGS) -c $< -o $@
 
-$(NAME): $(OBJ_FILES)
-	ar rcs $(NAME) $(OBJ_FILES)
-
-norme:
-	@norminette $(SRC_FILES)
-	@norminette libft.h
+$(NAME): $(addprefix $(OBJ_DIR)/,$(OBJ_FILES))
+	ar rcs $(NAME) $(addprefix $(OBJ_DIR)/,$(OBJ_FILES))
 
 clean:
-	rm -f $(OBJ_FILES)
+	rm -rf $(OBJ_DIR)
 
 fclean: clean
 	rm -f $(NAME)
