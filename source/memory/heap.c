@@ -6,7 +6,7 @@
 /*   By: soumanso <soumanso@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 17:47:39 by soumanso          #+#    #+#             */
-/*   Updated: 2022/02/16 16:17:58 by soumanso         ###   ########lyon.fr   */
+/*   Updated: 2022/02/25 14:20:04 by soumanso         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_int	ft_get_heap_allocations(void)
 	return (g_heap_allocations);
 }
 
-void	*heap_alloc(t_alloc_op op, t_s64 size, void *ptr, void *data)
+void	*ft_heap_alloc(t_alloc_op op, t_s64 size, void *ptr, void *data)
 {
 	void	*result;
 
