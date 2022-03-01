@@ -6,7 +6,7 @@
 /*   By: soumanso <soumanso@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 12:27:46 by soumanso          #+#    #+#             */
-/*   Updated: 2022/02/25 14:43:14 by soumanso         ###   ########lyon.fr   */
+/*   Updated: 2022/03/01 15:55:57 by soumanso         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,9 +216,9 @@ t_s64		ft_str_to_bool(t_cstr s, t_bool *out);
 
 /* Parsing */
 
-t_s64	ft_skip_spaces(t_cstr str);
-t_s64	ft_skip_until_space(t_cstr str);
-t_s64	ft_skip_quoted_string(t_cstr str, char quote);
+t_s64		ft_skip_spaces(t_cstr str);
+t_s64		ft_skip_until_space(t_cstr str);
+t_s64		ft_skip_quoted_string(t_cstr str, char quote);
 
 /* Output */
 
