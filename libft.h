@@ -6,7 +6,7 @@
 /*   By: soumanso <soumanso@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 12:27:46 by soumanso          #+#    #+#             */
-/*   Updated: 2022/03/01 15:55:57 by soumanso         ###   ########lyon.fr   */
+/*   Updated: 2022/03/02 16:10:00 by soumanso         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,11 +214,56 @@ t_s64		ft_str_to_u64(t_cstr s, t_u64 *out);
 t_s64		ft_str_to_uint(t_cstr s, t_uint *out);
 t_s64		ft_str_to_bool(t_cstr s, t_bool *out);
 
-/* Parsing */
+/* Lexer */
 
-t_s64		ft_skip_spaces(t_cstr str);
-t_s64		ft_skip_until_space(t_cstr str);
-t_s64		ft_skip_quoted_string(t_cstr str, char quote);
+typedef enum e_token_kind
+{
+	TK_UNKNOWN = 0x00,
+	TK_SPACES = 0x01,
+	TK_CHAR = 0x02,
+	TK_QUOTED_STR = 0x04,
+	TK_DELIMITED = 0x08,
+	TK_SPACE_DELIM = 0x10,
+	TK_IDENTIFIER = 0x20,
+	TK_INTEGER = 0x40
+}	t_token_kind;
+
+typedef struct s_token
+{
+	t_token_kind	kind;
+	char			c;
+	char			quote;
+	char			delim;
+	t_s64			len;
+	t_cstr			str;
+	t_s64			integer;
+	struct s_token	*prev;
+	struct s_token	*next;
+}	t_token;
+
+typedef struct s_lexer
+{
+	t_cstr	start;
+	t_cstr	curr;
+	t_cstr	end;
+	t_token	*first_token;
+	t_token	*last_token;
+	t_alloc	allocator;
+}	t_lexer;
+
+void		ft_lexer_init(t_lexer *lexer, t_cstr str, t_alloc allocator);
+t_bool		ft_lexer_is_valid(t_lexer *lexer);
+t_token		*ft_lexer_push_token(t_lexer *lexer);
+t_token		*ft_lexer_next(t_lexer *lexer);
+t_token		*ft_lexer_skip(t_lexer *lexer, t_token_kind kinds);
+t_token		*ft_lexer_skip_spaces(t_lexer *lexer);
+t_token		*ft_lexer_skip_char(t_lexer *lexer, char c);
+t_token		*ft_lexer_skip_quoted_str(t_lexer *lexer);
+t_token		*ft_lexer_skip_space_delim(t_lexer *lexer);
+t_token		*ft_lexer_skip_delim(t_lexer *lexer, t_cstr delim);
+t_token		*ft_lexer_skip_identifier(t_lexer *lexer);
+t_bool		ft_lexer_is_integer(t_lexer *lexer);
+t_token		*ft_lexer_skip_integer(t_lexer *lexer);
 
 /* Output */
 
