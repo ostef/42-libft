@@ -6,7 +6,7 @@
 /*   By: soumanso <soumanso@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 16:27:54 by soumanso          #+#    #+#             */
-/*   Updated: 2022/02/16 16:24:59 by soumanso         ###   ########lyon.fr   */
+/*   Updated: 2022/03/04 17:52:35 by soumanso         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,8 @@ void	*ft_realloc(void *ptr, t_s64 old_size, t_s64 size, t_alloc alloc)
 	void	*new_ptr;
 
 	new_ptr = ft_alloc (size, alloc);
-	if (!new_ptr)
-	{
-		ft_free (ptr, alloc);
-		return (NULL);
-	}
-	ft_memcpy (new_ptr, ptr, ft_min (size, old_size));
+	if (new_ptr)
+		ft_memcpy (new_ptr, ptr, ft_min (size, old_size));
 	ft_free (ptr, alloc);
 	return (new_ptr);
 }

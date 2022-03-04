@@ -6,7 +6,7 @@
 /*   By: soumanso <soumanso@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 17:45:37 by soumanso          #+#    #+#             */
-/*   Updated: 2022/02/25 14:43:56 by soumanso         ###   ########lyon.fr   */
+/*   Updated: 2022/03/04 18:30:42 by soumanso         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	*ft_arena_alloc(t_alloc_op op, t_s64 size, void *ptr, void *data)
 	arena = (t_arena *)data;
 	if (op == OP_ALLOCATE)
 	{
-		size = (size + 7) & -7;
+		size = (size + 7) & ~7;
 		if (arena->top + size > arena->size)
 			return (NULL);
 		result = arena->mem + arena->top;
