@@ -6,7 +6,7 @@
 /*   By: soumanso <soumanso@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 12:27:46 by soumanso          #+#    #+#             */
-/*   Updated: 2022/03/02 16:10:00 by soumanso         ###   ########lyon.fr   */
+/*   Updated: 2022/03/09 17:42:00 by soumanso         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -218,14 +218,14 @@ t_s64		ft_str_to_bool(t_cstr s, t_bool *out);
 
 typedef enum e_token_kind
 {
-	TK_UNKNOWN = 0x00,
-	TK_SPACES = 0x01,
-	TK_CHAR = 0x02,
-	TK_QUOTED_STR = 0x04,
-	TK_DELIMITED = 0x08,
-	TK_SPACE_DELIM = 0x10,
-	TK_IDENTIFIER = 0x20,
-	TK_INTEGER = 0x40
+	TK_UNKNOWN = 0,
+	TK_SPACES,
+	TK_CHAR,
+	TK_QUOTED_STR,
+	TK_DELIMITED,
+	TK_SPACE_DELIM,
+	TK_IDENTIFIER,
+	TK_INTEGER
 }	t_token_kind;
 
 typedef struct s_token
@@ -254,8 +254,6 @@ typedef struct s_lexer
 void		ft_lexer_init(t_lexer *lexer, t_cstr str, t_alloc allocator);
 t_bool		ft_lexer_is_valid(t_lexer *lexer);
 t_token		*ft_lexer_push_token(t_lexer *lexer);
-t_token		*ft_lexer_next(t_lexer *lexer);
-t_token		*ft_lexer_skip(t_lexer *lexer, t_token_kind kinds);
 t_token		*ft_lexer_skip_spaces(t_lexer *lexer);
 t_token		*ft_lexer_skip_char(t_lexer *lexer, char c);
 t_token		*ft_lexer_skip_quoted_str(t_lexer *lexer);

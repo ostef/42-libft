@@ -6,7 +6,7 @@
 /*   By: soumanso <soumanso@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 15:16:16 by soumanso          #+#    #+#             */
-/*   Updated: 2022/03/02 16:00:29 by soumanso         ###   ########lyon.fr   */
+/*   Updated: 2022/03/09 17:42:17 by soumanso         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,28 +48,4 @@ t_token	*ft_lexer_push_token(t_lexer *lexer)
 		lexer->first_token = new;
 	lexer->last_token = new;
 	return (new);
-}
-
-t_token	*ft_lexer_next(t_lexer *lexer)
-{
-	return (ft_lexer_skip (lexer, 0xffffffff));
-}
-
-t_token	*ft_lexer_skip(t_lexer *lexer, t_token_kind kinds)
-{
-	if (lexer->curr >= lexer->end)
-		return (NULL);
-	if ((kinds | TK_SPACES) == TK_SPACES && ft_is_space (*(lexer->curr)))
-		return (ft_lexer_skip_spaces (lexer));
-	if ((kinds | TK_QUOTED_STR) == TK_QUOTED_STR
-		&& (*(lexer->curr) == '\'' || *(lexer->curr) == '"'))
-		return (ft_lexer_skip_quoted_str (lexer));
-	if ((kinds | TK_SPACE_DELIM) == TK_SPACE_DELIM)
-		return (ft_lexer_skip_space_delim (lexer));
-	if ((kinds | TK_IDENTIFIER) == TK_IDENTIFIER
-		&& (*(lexer->curr) == '_' || ft_is_alpha (*(lexer->curr))))
-		return (ft_lexer_skip_identifier (lexer));
-	if ((kinds | TK_INTEGER) == TK_INTEGER && !ft_lexer_is_integer (lexer))
-		return (ft_lexer_skip_integer (lexer));
-	return (NULL);
 }
