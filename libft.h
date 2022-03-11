@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: soumanso <soumanso@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: aandric <aandric@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 12:27:46 by soumanso          #+#    #+#             */
-/*   Updated: 2022/03/09 17:42:00 by soumanso         ###   ########lyon.fr   */
+/*   Updated: 2022/03/11 17:30:28 by aandric          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,6 +199,7 @@ t_cstr		ft_strstr(t_cstr s, t_cstr needle);
 t_cstr		ft_strnstr(t_cstr s, t_cstr needle, t_s64 n);
 t_cstr		ft_strrstr(t_cstr s, t_cstr needle);
 t_cstr		ft_strnrstr(t_cstr s, t_cstr needle, t_s64 n);
+t_int		ft_count_chars(t_cstr str, char c, t_s64 n);
 
 /* String convert */
 
@@ -252,6 +253,7 @@ typedef struct s_lexer
 }	t_lexer;
 
 void		ft_lexer_init(t_lexer *lexer, t_cstr str, t_alloc allocator);
+void		ft_lexer_init_n(t_lexer *lexer, t_cstr str, t_int len, t_alloc allocator);
 t_bool		ft_lexer_is_valid(t_lexer *lexer);
 t_token		*ft_lexer_push_token(t_lexer *lexer);
 t_token		*ft_lexer_skip_spaces(t_lexer *lexer);
