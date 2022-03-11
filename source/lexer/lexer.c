@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: soumanso <soumanso@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: aandric <aandric@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 15:16:16 by soumanso          #+#    #+#             */
-/*   Updated: 2022/03/02 16:00:29 by soumanso         ###   ########lyon.fr   */
+/*   Updated: 2022/03/11 14:33:20 by aandric          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,16 @@ void	ft_lexer_init(t_lexer *lexer, t_cstr str, t_alloc allocator)
 	lexer->start = str;
 	lexer->curr = str;
 	lexer->end = str + ft_strlen (str);
+	lexer->first_token = NULL;
+	lexer->last_token = NULL;
+	lexer->allocator = allocator;
+}
+
+void	ft_lexer_init_n(t_lexer *lexer, t_cstr str, t_int len, t_alloc allocator)
+{
+	lexer->start = str;
+	lexer->curr = str;
+	lexer->end = str + len;
 	lexer->first_token = NULL;
 	lexer->last_token = NULL;
 	lexer->allocator = allocator;
