@@ -6,7 +6,7 @@
 /*   By: soumanso <soumanso@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 12:27:46 by soumanso          #+#    #+#             */
-/*   Updated: 2022/03/14 13:52:27 by soumanso         ###   ########lyon.fr   */
+/*   Updated: 2022/03/14 14:56:37 by soumanso         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <string.h>
 # include <errno.h>
+# include <limits.h>
 
 typedef char			t_s8;
 typedef unsigned char	t_u8;
