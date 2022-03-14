@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aandric <aandric@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: soumanso <soumanso@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 12:27:46 by soumanso          #+#    #+#             */
-/*   Updated: 2022/03/11 17:30:28 by aandric          ###   ########lyon.fr   */
+/*   Updated: 2022/03/14 13:52:27 by soumanso         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -253,7 +253,8 @@ typedef struct s_lexer
 }	t_lexer;
 
 void		ft_lexer_init(t_lexer *lexer, t_cstr str, t_alloc allocator);
-void		ft_lexer_init_n(t_lexer *lexer, t_cstr str, t_int len, t_alloc allocator);
+void		ft_lexer_init_n(t_lexer *lexer, t_cstr str, t_s64 len,
+				t_alloc allocator);
 t_bool		ft_lexer_is_valid(t_lexer *lexer);
 t_token		*ft_lexer_push_token(t_lexer *lexer);
 t_token		*ft_lexer_skip_spaces(t_lexer *lexer);
