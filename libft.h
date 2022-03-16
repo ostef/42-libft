@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: soumanso <soumanso@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: aandric <aandric@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 12:27:46 by soumanso          #+#    #+#             */
-/*   Updated: 2022/03/14 14:56:37 by soumanso         ###   ########lyon.fr   */
+/*   Updated: 2022/03/16 17:35:45 by aandric          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -263,6 +263,7 @@ t_token		*ft_lexer_skip_char(t_lexer *lexer, char c);
 t_token		*ft_lexer_skip_quoted_str(t_lexer *lexer);
 t_token		*ft_lexer_skip_space_delim(t_lexer *lexer);
 t_token		*ft_lexer_skip_delim(t_lexer *lexer, t_cstr delim);
+t_token		*ft_lexer_return_string_before_delim(t_lexer *lexer, t_cstr delim);
 t_token		*ft_lexer_skip_identifier(t_lexer *lexer);
 t_bool		ft_lexer_is_integer(t_lexer *lexer);
 t_token		*ft_lexer_skip_integer(t_lexer *lexer);
