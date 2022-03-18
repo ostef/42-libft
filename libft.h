@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aandric <aandric@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: soumanso <soumanso@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 12:27:46 by soumanso          #+#    #+#             */
-/*   Updated: 2022/03/16 17:35:45 by aandric          ###   ########lyon.fr   */
+/*   Updated: 2022/03/18 18:05:44 by soumanso         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -223,6 +223,7 @@ typedef enum e_token_kind
 	TK_UNKNOWN = 0,
 	TK_SPACES,
 	TK_CHAR,
+	TK_STRING,
 	TK_QUOTED_STR,
 	TK_DELIMITED,
 	TK_SPACE_DELIM,
@@ -260,6 +261,7 @@ t_bool		ft_lexer_is_valid(t_lexer *lexer);
 t_token		*ft_lexer_push_token(t_lexer *lexer);
 t_token		*ft_lexer_skip_spaces(t_lexer *lexer);
 t_token		*ft_lexer_skip_char(t_lexer *lexer, char c);
+t_token		*ft_lexer_skip_string(t_lexer *lexer, t_cstr str);
 t_token		*ft_lexer_skip_quoted_str(t_lexer *lexer);
 t_token		*ft_lexer_skip_space_delim(t_lexer *lexer);
 t_token		*ft_lexer_skip_delim(t_lexer *lexer, t_cstr delim);
