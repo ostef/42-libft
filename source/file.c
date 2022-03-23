@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   file.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: soumanso <soumanso@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: aandric <aandric@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 18:13:04 by soumanso          #+#    #+#             */
-/*   Updated: 2022/02/16 16:11:25 by soumanso         ###   ########lyon.fr   */
+/*   Updated: 2022/03/23 19:03:28 by aandric          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <unistd.h>
-#include <fcntl.h>
 
 static void	ft_grow_buff(t_buff *buff, t_s64 min, t_alloc alloc)
 {
