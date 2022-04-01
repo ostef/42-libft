@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aandric <aandric@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: soumanso <soumanso@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 12:27:46 by soumanso          #+#    #+#             */
-/*   Updated: 2022/03/30 16:33:07 by aandric          ###   ########lyon.fr   */
+/*   Updated: 2022/04/01 17:40:48 by soumanso         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,6 +179,21 @@ t_bool		ft_is_space(char c);
 
 /* String */
 
+typedef struct s_pstr
+{
+	t_str	data;
+	t_s64	len;
+}	t_pstr;
+
+typedef struct s_pcstr
+{
+	t_cstr	data;
+	t_s64	len;
+}	t_pcstr;
+
+t_pstr		pstr(t_str data, t_s64 len);
+t_pcstr		pcstr(t_cstr data, t_s64 len);
+
 void		*ft_memcpy(void *dst, const void *src, t_s64 n);
 void		*ft_memmove(void *dst, const void *src, t_s64 n);
 void		*ft_memset(void *dst, t_u8 c, t_s64 n);
@@ -205,6 +220,7 @@ t_cstr		ft_strnstr(t_cstr s, t_cstr needle, t_s64 n);
 t_cstr		ft_strrstr(t_cstr s, t_cstr needle);
 t_cstr		ft_strnrstr(t_cstr s, t_cstr needle, t_s64 n);
 t_int		ft_count_chars(t_cstr str, char c, t_s64 n);
+t_pcstr		*ft_split(t_cstr str, char c, t_alloc alloc);
 
 /* String convert */
 
