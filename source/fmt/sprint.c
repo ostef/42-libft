@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sprint.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aandric <aandric@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: soumanso <soumanso@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 00:07:40 by soumanso          #+#    #+#             */
-/*   Updated: 2022/03/16 15:07:35 by aandric          ###   ########lyon.fr   */
+/*   Updated: 2022/04/07 13:47:58 by soumanso         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ t_s64	ft_vsprint(t_str buff, t_cstr fmt, va_list va)
 		if (*fmt == '%')
 		{
 			fmt += 1;
+			if (!(*fmt))
+				break ;
 			if (*fmt != '%')
 			{
 				fmt += ft_next_arg (fmt, &b, va);
