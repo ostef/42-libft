@@ -9,6 +9,7 @@ SRC_FILES = debug.c file.c\
 	string/memchr.c string/memcmp.c string/memcpy.c string/memset.c string/count_chars.c\
 	string/strchr.c string/strcmp.c string/strcpy.c string/strdup.c string/strstr.c\
 	string/pstr.c string/split.c\
+	builder/builder.c builder/append.c\
 	lexer/lexer.c lexer/spaces.c lexer/string.c lexer/integer.c\
 	memory/alloc.c memory/heap.c memory/arena.c memory/temp.c\
 	fmt/print.c fmt/sprint.c fmt/fprint.c\

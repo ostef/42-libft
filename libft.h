@@ -6,7 +6,7 @@
 /*   By: soumanso <soumanso@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 12:27:46 by soumanso          #+#    #+#             */
-/*   Updated: 2022/04/01 17:40:48 by soumanso         ###   ########lyon.fr   */
+/*   Updated: 2022/04/17 16:48:57 by soumanso         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -382,5 +382,24 @@ t_s64		ft_print(t_cstr fmt, ...);
 t_s64		ft_vprintln(t_cstr fmt, va_list va);
 t_s64		ft_println(t_cstr fmt, ...);
 t_str		ft_fmt(t_alloc alloc, t_str fmt, ...);
+
+/* String builder */
+
+typedef struct s_builder
+{
+	t_str	data;
+	t_s64	len;
+	t_s64	cap;
+	t_alloc	allocator;
+}	t_builder;
+
+void		ft_builder_init(t_builder *builder, t_s64 cap, t_alloc allocator);
+void		ft_builder_reset(t_builder *builder);
+void		ft_builder_grow(t_builder *builder, t_s64 add_cap);
+void		ft_builder_append_char(t_builder *builder, char c);
+void		ft_builder_append_len(t_builder *builder, t_cstr str, t_s64 len);
+void		ft_builder_append(t_builder *builder, t_cstr str);
+void		ft_builder_append_fmt(t_builder *builder, t_cstr fmt_str, ...);
+t_str		ft_builder_build(t_builder *builder);
 
 #endif
