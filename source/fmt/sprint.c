@@ -6,7 +6,7 @@
 /*   By: soumanso <soumanso@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 00:07:40 by soumanso          #+#    #+#             */
-/*   Updated: 2022/04/07 13:47:58 by soumanso         ###   ########lyon.fr   */
+/*   Updated: 2022/04/17 16:06:28 by soumanso         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,5 +93,3 @@ t_str	ft_fmt(t_alloc alloc, t_str fmt, ...)
 	va_end (va);
 	return (str);
 }
-
-//str = ft_fmt ("%s%s", str, new_str);
