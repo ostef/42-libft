@@ -6,7 +6,7 @@
 /*   By: soumanso <soumanso@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 12:27:46 by soumanso          #+#    #+#             */
-/*   Updated: 2022/04/18 15:50:23 by soumanso         ###   ########lyon.fr   */
+/*   Updated: 2022/04/29 17:16:36 by soumanso         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,8 +191,8 @@ typedef struct s_pcstr
 	t_s64	len;
 }	t_pcstr;
 
-t_pstr		pstr(t_str data, t_s64 len);
-t_pcstr		pcstr(t_cstr data, t_s64 len);
+t_pstr		ft_pstr(t_str data, t_s64 len);
+t_pcstr		ft_pcstr(t_cstr data, t_s64 len);
 
 void		*ft_memcpy(void *dst, const void *src, t_s64 n);
 void		*ft_memmove(void *dst, const void *src, t_s64 n);

@@ -6,7 +6,7 @@
 /*   By: soumanso <soumanso@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 17:29:02 by soumanso          #+#    #+#             */
-/*   Updated: 2022/04/01 17:41:03 by soumanso         ###   ########lyon.fr   */
+/*   Updated: 2022/04/29 17:24:07 by soumanso         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,13 @@ t_pcstr	*ft_split(t_cstr str, char c, t_alloc alloc)
 		if (str[end] == c)
 		{
 			if (start > end)
-				res[i++] = pcstr (str + start, end - start);
+				res[i++] = ft_pcstr (str + start, end - start);
 			start = end + 1;
 		}
 		end += 1;
 	}
 	if (start > end)
-		res[i++] = pcstr (str + start, end - start);
-	res[i] = pcstr (NULL, 0);
+		res[i++] = ft_pcstr (str + start, end - start);
+	res[i] = ft_pcstr (NULL, 0);
 	return (res);
 }
