@@ -6,11 +6,13 @@
 /*   By: soumanso <soumanso@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 17:47:24 by soumanso          #+#    #+#             */
-/*   Updated: 2022/02/16 16:09:30 by soumanso         ###   ########lyon.fr   */
+/*   Updated: 2022/07/29 21:35:04 by soumanso         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+#ifdef USE_GLOBAL_TEMP_STORAGE
 
 static t_arena	g_temp_storage;
 
@@ -48,3 +50,5 @@ void	ft_set_temp_storage_state(t_s64 state)
 		"ft_set_temp_storage_state: Invalid temp storage state.");
 	g_temp_storage.top = state;
 }
+
+#endif

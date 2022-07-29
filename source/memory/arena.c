@@ -6,7 +6,7 @@
 /*   By: soumanso <soumanso@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 17:45:37 by soumanso          #+#    #+#             */
-/*   Updated: 2022/03/04 18:30:42 by soumanso         ###   ########lyon.fr   */
+/*   Updated: 2022/07/29 21:37:00 by soumanso         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,11 @@ void	ft_free_arena(t_arena *arena)
 {
 	ft_free (arena->mem, ft_heap ());
 	ft_memset (arena, 0, sizeof (t_arena));
+}
+
+void	ft_reset_arena(t_arena *arena)
+{
+	arena->top = 0;
 }
 
 void	*ft_arena_alloc(t_alloc_op op, t_s64 size, void *ptr, void *data)

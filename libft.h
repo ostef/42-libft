@@ -6,7 +6,7 @@
 /*   By: soumanso <soumanso@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 12:27:46 by soumanso          #+#    #+#             */
-/*   Updated: 2022/07/29 18:44:05 by soumanso         ###   ########lyon.fr   */
+/*   Updated: 2022/07/29 21:37:38 by soumanso         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,13 +102,18 @@ void		*ft_heap_alloc(t_alloc_op op, t_s64 size, void *ptr, void *data);
 t_alloc		ft_arena(t_arena *arena);
 t_bool		ft_init_arena(t_arena *arena, t_s64 size);
 void		ft_free_arena(t_arena *arena);
+void		ft_reset_arena(t_arena *arena);
 void		*ft_arena_alloc(t_alloc_op op, t_s64 size, void *ptr, void *data);
+
+# ifdef USE_GLOBAL_TEMP_STORAGE
 
 t_alloc		ft_temp(void);
 void		ft_init_temp_storage(void);
 void		ft_reset_temp_storage(void);
 t_s64		ft_get_temp_storage_state(void);
 void		ft_set_temp_storage_state(t_s64 state);
+
+# endif
 
 /* Math */
 
