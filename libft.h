@@ -6,7 +6,7 @@
 /*   By: soumanso <soumanso@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 12:27:46 by soumanso          #+#    #+#             */
-/*   Updated: 2022/07/29 18:10:45 by soumanso         ###   ########lyon.fr   */
+/*   Updated: 2022/07/29 18:44:05 by soumanso         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,7 @@ t_f32		ft_lerp(t_f32 a, t_f32 b, t_f32 t);
 
 # define RNG_START 0x0173965
 
-typedef t_int	t_rng;
+typedef t_int			t_rng;
 
 void		ft_rand_seed(t_rng *rng, t_int seed);
 t_int		ft_rand(t_rng *rng);
