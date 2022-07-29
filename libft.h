@@ -6,7 +6,7 @@
 /*   By: soumanso <soumanso@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 12:27:46 by soumanso          #+#    #+#             */
-/*   Updated: 2022/04/29 17:16:36 by soumanso         ###   ########lyon.fr   */
+/*   Updated: 2022/07/29 18:10:45 by soumanso         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,10 +143,14 @@ t_f32		ft_lerp(t_f32 a, t_f32 b, t_f32 t);
 
 /* Random */
 
-void		ft_rand_seed(t_int seed);
-t_int		ft_rand(void);
-t_f32		ft_rand_rangef(t_f32 low, t_f32 high);
-t_int		ft_rand_rangei(t_int low, t_int high);
+# define RNG_START 0x0173965
+
+typedef t_int	t_rng;
+
+void		ft_rand_seed(t_rng *rng, t_int seed);
+t_int		ft_rand(t_rng *rng);
+t_f32		ft_rand_rangef(t_rng *rng, t_f32 low, t_f32 high);
+t_int		ft_rand_rangei(t_rng *rng, t_int low, t_int high);
 
 /* IEEE 754 */
 
