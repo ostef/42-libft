@@ -11,7 +11,7 @@ SRC_FILES = debug.c file.c\
 	string/pstr.c string/split.c\
 	builder/builder.c builder/append.c\
 	lexer/lexer.c lexer/spaces.c lexer/string.c lexer/integer.c\
-	memory/alloc.c memory/heap.c memory/arena.c memory/temp.c\
+	memory/alloc.c memory/heap.c memory/arena.c memory/arena_page.c\
 	fmt/print.c fmt/sprint.c fmt/fprint.c\
 	fmt/buff.c fmt/arg.c fmt/read_fmt.c\
 	fmt/specifiers/sprint_c.c\

@@ -6,7 +6,7 @@
 /*   By: soumanso <soumanso@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 12:27:46 by soumanso          #+#    #+#             */
-/*   Updated: 2022/07/29 21:37:38 by soumanso         ###   ########lyon.fr   */
+/*   Updated: 2022/08/04 16:06:53 by soumanso         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,17 +65,6 @@ void		ft_panic(t_cstr fmt, ...);
 
 /* Memory allocation */
 
-# ifndef TEMP_STORAGE_SIZE
-#  define TEMP_STORAGE_SIZE (1048576)	/* 1 MB */
-# endif
-
-typedef struct s_arena
-{
-	t_u8	*mem;
-	t_s64	size;
-	t_s64	top;
-}	t_arena;
-
 typedef enum e_alloc_op
 {
 	OP_ALLOCATE = 0,
@@ -99,21 +88,38 @@ t_alloc		ft_heap(void);
 t_int		ft_get_heap_allocations(void);
 void		*ft_heap_alloc(t_alloc_op op, t_s64 size, void *ptr, void *data);
 
+# ifndef MEMORY_ARENA_PAGE_SIZE
+#  define MEMORY_ARENA_PAGE_SIZE (4096)
+# endif
+
+typedef struct s_arena_page
+{
+	struct s_arena_page	*prev;
+	t_s64				size;
+	t_s64				top;
+}	t_arena_page;
+
+typedef struct s_arena_mk
+{
+	t_arena_page	*page;
+	t_s64			top;
+}	t_arena_mk;
+
+typedef struct s_arena
+{
+	t_arena_page	*current_page;
+	t_alloc			page_allocator;
+}	t_arena;
+
 t_alloc		ft_arena(t_arena *arena);
-t_bool		ft_init_arena(t_arena *arena, t_s64 size);
+t_bool		ft_init_arena(t_arena *arena, t_s64 size, t_alloc allocator);
 void		ft_free_arena(t_arena *arena);
 void		ft_reset_arena(t_arena *arena);
+t_bool		ft_arena_add_page(t_arena *arena, t_s64 min_size);
+void		ft_arena_free_pages(t_arena *arena, t_arena_page *page);
+t_arena_mk	ft_arena_get_marker(t_arena *arena);
+void		ft_arena_set_marker(t_arena *arena, t_arena_mk marker);
 void		*ft_arena_alloc(t_alloc_op op, t_s64 size, void *ptr, void *data);
-
-# ifdef USE_GLOBAL_TEMP_STORAGE
-
-t_alloc		ft_temp(void);
-void		ft_init_temp_storage(void);
-void		ft_reset_temp_storage(void);
-t_s64		ft_get_temp_storage_state(void);
-void		ft_set_temp_storage_state(t_s64 state);
-
-# endif
 
 /* Math */
 
