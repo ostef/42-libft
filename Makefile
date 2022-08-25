@@ -51,10 +51,12 @@ endif
 
 all: $(NAME)
 
+.PRECIOUS: $(OBJ_DIR)/%.o
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c libft.h Makefile
 	@mkdir -p $(dir $@)
 	$(CC) $(C_FLAGS) -c $< -o $@
 
+.PRECIOUS: $(OBJ_DIR)/%.obj
 $(OBJ_DIR)/%.obj: $(SRC_DIR)/%.c libft.h Makefile
 	@mkdir -p $(dir $@)
 	@$(CC) $(C_FLAGS) -c $< -Fo$(dir $@)
