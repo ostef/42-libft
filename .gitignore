@@ -1,5 +1,7 @@
 *.o
+*.obj
 *.out
 *.a
+*.lib
 .vscode/
 obj/

@@ -6,12 +6,11 @@
 /*   By: soumanso <soumanso@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 00:07:40 by soumanso          #+#    #+#             */
-/*   Updated: 2022/02/16 16:26:49 by soumanso         ###   ########lyon.fr   */
+/*   Updated: 2022/08/24 20:48:05 by soumanso         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <unistd.h>
 
 t_s64	ft_vfprint(t_file f, t_cstr fmt, va_list va)
 {
@@ -26,7 +25,7 @@ t_s64	ft_vfprint(t_file f, t_cstr fmt, va_list va)
 	if (!buff)
 		return (-1);
 	ft_vsprint (buff, fmt, va);
-	write (f, buff, len);
+	ft_write_file (f, buff, len);
 	ft_free (buff, ft_heap ());
 	return (len);
 }
@@ -55,7 +54,7 @@ t_s64	ft_vfprintln(t_file f, t_cstr fmt, va_list va)
 	if (!buff)
 		return (-1);
 	ft_vsprintln (buff, fmt, va);
-	write (f, buff, len);
+	ft_write_file (f, buff, len);
 	ft_free (buff, ft_heap ());
 	return (len);
 }

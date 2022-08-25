@@ -6,7 +6,7 @@
 /*   By: soumanso <soumanso@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 16:28:10 by soumanso          #+#    #+#             */
-/*   Updated: 2021/11/22 16:28:10 by soumanso         ###   ########lyon.fr   */
+/*   Updated: 2022/08/25 10:12:19 by soumanso         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	*ft_memcpy(void *dst, const void *src, t_s64 n)
 	i = 0;
 	while (i < n)
 	{
-		((t_u8 *)dst)[i] = ((t_u8 *)src)[i];
+		((t_u8 *)dst)[i] = ((const t_u8 *)src)[i];
 		i += 1;
 	}
 	return (dst);
@@ -34,7 +34,7 @@ void	*ft_memmove(void *dst, const void *src, t_s64 n)
 		i = n - 1;
 		while (i >= 0)
 		{
-			((t_u8 *)dst)[i] = ((t_u8 *)src)[i];
+			((t_u8 *)dst)[i] = ((const t_u8 *)src)[i];
 			i -= 1;
 		}
 	}
@@ -43,7 +43,7 @@ void	*ft_memmove(void *dst, const void *src, t_s64 n)
 		i = 0;
 		while (i < n)
 		{
-			((t_u8 *)dst)[i] = ((t_u8 *)src)[i];
+			((t_u8 *)dst)[i] = ((const t_u8 *)src)[i];
 			i += 1;
 		}
 	}

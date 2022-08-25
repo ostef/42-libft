@@ -6,7 +6,7 @@
 /*   By: soumanso <soumanso@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 22:04:22 by soumanso          #+#    #+#             */
-/*   Updated: 2022/04/29 17:49:04 by soumanso         ###   ########lyon.fr   */
+/*   Updated: 2022/08/25 10:13:45 by soumanso         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static t_s64	ft_read_width(const char *fmt, t_fmt_arg *arg)
 		i += 1;
 	}
 	else if (fmt[i] >= '0' && fmt[i] <= '9')
-		i += ft_str_to_int (fmt + i, &arg->width);
+		i += ft_str_to_int (fmt + i, (t_int *)&arg->width);
 	return (i);
 }
 
@@ -85,7 +85,7 @@ static t_s64	ft_read_precision(const char *fmt, t_fmt_arg *arg)
 			i += 1;
 		}
 		else if (fmt[i] >= '0' && fmt[i] <= '9')
-			i += ft_str_to_int (fmt + i, &arg->precision);
+			i += ft_str_to_int (fmt + i, (t_int *)&arg->precision);
 		else
 			arg->precision = 0;
 	}

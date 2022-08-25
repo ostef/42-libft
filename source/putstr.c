@@ -6,12 +6,11 @@
 /*   By: soumanso <soumanso@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 16:28:22 by soumanso          #+#    #+#             */
-/*   Updated: 2021/11/22 16:28:22 by soumanso         ###   ########lyon.fr   */
+/*   Updated: 2022/08/24 17:50:20 by soumanso         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <unistd.h>
 
 t_s64	ft_fputstr(t_file f, t_cstr s)
 {

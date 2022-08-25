@@ -6,7 +6,7 @@
 /*   By: soumanso <soumanso@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 12:27:46 by soumanso          #+#    #+#             */
-/*   Updated: 2022/08/04 16:06:53 by soumanso         ###   ########lyon.fr   */
+/*   Updated: 2022/08/25 10:41:26 by soumanso         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,47 +14,58 @@
 # define LIBFT_H
 
 # include <stdarg.h>
+# include <stdint.h>
 # include <stdlib.h>
 # include <string.h>
 # include <errno.h>
 # include <limits.h>
 # include <sys/types.h>
 # include <sys/stat.h>
-# include <unistd.h>
-# include <fcntl.h>
 
-typedef char			t_s8;
-typedef unsigned char	t_u8;
-typedef short			t_s16;
-typedef unsigned short	t_u16;
-typedef int				t_s32;
-typedef unsigned int	t_u32;
-typedef long			t_s64;
-typedef unsigned long	t_u64;
-typedef int				t_int;
-typedef unsigned int	t_uint;
-typedef float			t_f32;
-typedef double			t_f64;
-typedef char			*t_str;
-typedef const char		*t_cstr;
-typedef int				t_file;
-typedef t_u8			t_bool;
+# if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
+#  define FT_WIN32
+# else
+#  define FT_UNIX
+# endif
+
+# ifdef FT_WIN32
+
+#  include <Windows.h>
+
+# else
+
+#  include <unistd.h>
+#  include <fcntl.h>
+
+# endif
+
+typedef int8_t		t_s8;
+typedef uint8_t		t_u8;
+typedef int16_t		t_s16;
+typedef uint16_t	t_u16;
+typedef int32_t		t_s32;
+typedef uint32_t	t_u32;
+typedef int64_t		t_s64;
+typedef uint64_t	t_u64;
+typedef t_s32		t_int;
+typedef t_u32		t_uint;
+typedef float		t_f32;
+typedef double		t_f64;
+typedef char		*t_str;
+typedef const char	*t_cstr;
+
+typedef t_u8		t_bool;
+
+/* FALSE and TRUE are defined in Windows.h, don't define them on windows. */
+
+# ifndef FT_WIN32
+
 enum
 {
 	FALSE = 0,
 	TRUE = 1
 };
 
-# ifndef STDIN
-#  define STDIN 0
-# endif
-
-# ifndef STDOUT
-#  define STDOUT 1
-# endif
-
-# ifndef STDERR
-#  define STDERR 2
 # endif
 
 /* Debugging */
@@ -71,7 +82,7 @@ typedef enum e_alloc_op
 	OP_FREE = 1
 }	t_alloc_op;
 
-typedef void			*(*t_alloc_proc)(t_alloc_op, t_s64, void *, void *);
+typedef void		*(*t_alloc_proc)(t_alloc_op, t_s64, void *, void *);
 
 typedef struct s_alloc
 {
@@ -121,6 +132,48 @@ t_arena_mk	ft_arena_get_marker(t_arena *arena);
 void		ft_arena_set_marker(t_arena *arena, t_arena_mk marker);
 void		*ft_arena_alloc(t_alloc_op op, t_s64 size, void *ptr, void *data);
 
+/* File abstraction */
+
+# ifdef WIN32
+
+typedef t_s64		t_file;
+
+# else
+
+typedef int			t_file;
+
+# endif
+
+# define INVALID_FILE -1
+
+# ifndef STDIN
+#  define STDIN 0
+# endif
+
+# ifndef STDOUT
+#  define STDOUT 1
+# endif
+
+# ifndef STDERR
+#  define STDERR 2
+# endif
+
+typedef enum e_open_mode
+{
+	OPEN_NONE = 0x00,
+	OPEN_READ = 0x01,
+	OPEN_WRITE = 0x02,
+	OPEN_RDWR = OPEN_READ | OPEN_WRITE,
+	OPEN_CREATE = 0x04,
+	OPEN_TRUNCATE = 0x08,
+	OPEN_APPEND = 0x10
+}	t_open_mode;
+
+t_file		ft_open_file(t_cstr filename, t_open_mode mode);
+void		ft_close_file(t_file file);
+t_s64		ft_read_file(t_file file, void *buff, t_s64 buff_size);
+t_s64		ft_write_file(t_file file, const void *buff, t_s64 buff_size);
+
 /* Math */
 
 # define S8_MIN  0x80
@@ -156,7 +209,7 @@ t_f32		ft_lerp(t_f32 a, t_f32 b, t_f32 t);
 
 # define RNG_START 0x0173965
 
-typedef t_int			t_rng;
+typedef t_int		t_rng;
 
 void		ft_rand_seed(t_rng *rng, t_int seed);
 t_int		ft_rand(t_rng *rng);
@@ -351,9 +404,9 @@ typedef enum e_fmt_precision
 	PREC_DEFAULT = -1
 }	t_fmt_precision;
 
-struct					s_fmt_arg;
+struct				s_fmt_arg;
 
-typedef t_s64			(*t_fmt_func) (t_buff *, struct s_fmt_arg, va_list);
+typedef t_s64		(*t_fmt_func) (t_buff *, struct s_fmt_arg, va_list);
 
 typedef struct s_fmt_arg
 {

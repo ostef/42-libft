@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   file.c                                             :+:      :+:    :+:   */
+/*   read_entire_file.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aandric <aandric@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: soumanso <soumanso@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 18:13:04 by soumanso          #+#    #+#             */
-/*   Updated: 2022/03/23 19:03:28 by aandric          ###   ########lyon.fr   */
+/*   Updated: 2022/08/25 09:54:46 by soumanso         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,14 @@ static t_s64	ft_do_one_read(t_file f, t_buff *buff, t_s64 len, t_alloc a)
 	ft_grow_buff (buff, len, a);
 	if (!buff->data)
 	{
-		close (f);
+		ft_close_file (f);
 		return (-1);
 	}
-	read_len = read (f, buff->data + len, buff->count - len - 1);
+	read_len = ft_read_file (f, buff->data + len, buff->count - len - 1);
 	if (read_len < 0)
 	{
 		ft_free (buff->data, a);
-		close (f);
+		ft_close_file (f);
 	}
 	return (read_len);
 }
@@ -60,8 +60,8 @@ t_str	ft_read_entire_file(t_cstr filename, t_alloc alloc)
 	buff.data = NULL;
 	buff.count = 0;
 	len = 0;
-	file = open (filename, O_RDONLY);
-	if (file < 0)
+	file = ft_open_file (filename, OPEN_READ);
+	if (file == INVALID_FILE)
 		return (NULL);
 	read_len = 1;
 	while (read_len)
@@ -73,7 +73,7 @@ t_str	ft_read_entire_file(t_cstr filename, t_alloc alloc)
 		else if (read_len < buff.count - len - 1)
 			break ;
 	}
-	close (file);
+	ft_close_file (file);
 	if (buff.data)
 		buff.data[len] = 0;
 	return (buff.data);
