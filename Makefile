@@ -39,7 +39,7 @@ ifdef OS	# This environment variable is only defined on Windows
 
 OBJ_FILES = $(SRC_FILES:.c=.obj)
 CC = cl
-C_FLAGS = -I. -TC -nologo
+C_FLAGS = -I. -TC -nologo -O2
 
 else
 
