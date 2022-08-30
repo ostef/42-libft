@@ -6,7 +6,7 @@
 /*   By: soumanso <soumanso@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 17:29:02 by soumanso          #+#    #+#             */
-/*   Updated: 2022/04/29 17:24:07 by soumanso         ###   ########lyon.fr   */
+/*   Updated: 2022/08/30 19:42:24 by soumanso         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,14 @@ t_s64	count_splits(t_cstr str, char c)
 	{
 		if (str[end] == c)
 		{
-			if (start > end)
+			if (start < end)
 				i += 1;
 			start = end + 1;
 		}
 		end += 1;
 	}
+	if (start < end)
+		i += 1;
 	return (i + 1);
 }
 
@@ -51,13 +53,13 @@ t_pcstr	*ft_split(t_cstr str, char c, t_alloc alloc)
 	{
 		if (str[end] == c)
 		{
-			if (start > end)
+			if (start < end)
 				res[i++] = ft_pcstr (str + start, end - start);
 			start = end + 1;
 		}
 		end += 1;
 	}
-	if (start > end)
+	if (start < end)
 		res[i++] = ft_pcstr (str + start, end - start);
 	res[i] = ft_pcstr (NULL, 0);
 	return (res);
